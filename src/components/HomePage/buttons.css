@@ -1,0 +1,20 @@
+.type-btn-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pag-btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+}
+.type-btn {
+    padding: 10px; 
+}
+
+.pag-btn {
+    padding: 10px;
+    font-size: 16px;
+}
+

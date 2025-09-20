@@ -1,0 +1,9 @@
+.navbar-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 20px;
+  background-color: #EF5350;
+
+
+}
