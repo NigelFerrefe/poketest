@@ -4,27 +4,6 @@ PokeTest is a web application built with React and Vite that consumes the public
 
 ---
 
-## Installation and Running
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/NigelFerrefe/poketest.git
-cd poketest
-
-
-2. Install dependencies:
-
-```bash
-npm install
-
-3. Run the application
-
-```bash
-npm run dev
-
----
-
 ## Technology Stack
 
 - **React + Vite**
@@ -49,7 +28,7 @@ npm run dev
 ## Brief Explanation of the Implemented Solution
 
 - **Global State with Zustand**:  
-  Keeps track of the current page (`currentPage`) and view type (`currentViewType`) so that when navigating to a Pokémon's detail page and back, the list preserves the exact page and view type.
+  Keeps track of the current page (`currentPage`) and view type (`currentViewType`) so that when navigating to a Pokémon's detail page and back, the list preserves the exact position and view type.
 
 - **API Consumption with Axios**:  
   - `getPokemonList` fetches paginated lists of Pokémon.  
@@ -69,3 +48,27 @@ npm run dev
 
 - **Cypress Tests**:  
   - Automated testing of the application's main user flows.
+
+
+---
+
+## Installation and Running
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/NigelFerrefe/poketest.git
+cd poketest
+
+
+2. Install dependencies:
+
+```bash
+npm install
+
+3. Run the application
+
+```bash
+npm run dev
+
+---
