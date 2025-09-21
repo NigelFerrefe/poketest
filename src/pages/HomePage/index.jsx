@@ -68,11 +68,15 @@ const HomePage = () => {
     className="container"
     >
       {loading ? (
-        <div style={{ textAlign: "center", padding: "2rem" }}>
-          Loading page...
+        <div>
+          <p>Loading page...</p>
         </div>
       ) : error ? (
-        <div style={{ color: "red" }}>Error: {error}</div>
+        <div>
+          <p>
+            Error: <span>{error}</span>
+          </p>
+        </div>
       ) : (
         <>
           <ViewTypeButton onToggle={toggleView} />

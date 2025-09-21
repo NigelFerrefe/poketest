@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getPokemonDetail } from "../../api/pokeApi";
 import PokemonCard from "../../components/PokemonCard/pokemonCard";
-
+import "./index.css";
+import BackButton from "../../components/ui/backBtn";
 function PokemonDetailPage() {
   const { id } = useParams();
   const [pokemon, setPokemon] = useState(null);
@@ -25,11 +26,25 @@ function PokemonDetailPage() {
     fetchPokemon();
   }, [id]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div style={{ color: "red" }}>Error: {error}</div>;
-
   return (
-    <PokemonCard pokemon={pokemon} />
+    <div className="detail-container">
+      {loading ? (
+        <div>
+          <p>Loading page...</p>
+        </div>
+      ) : error ? (
+        <div>
+          <p>
+            Error: <span>{error}</span>
+          </p>
+        </div>
+      ) : (
+        <>
+          <PokemonCard pokemon={pokemon} />
+          <BackButton />
+        </>
+      )}
+    </div>
   );
 }
 

@@ -1,14 +1,16 @@
 import { NavLink } from "react-router-dom";
-
+import "./index.css";
+import AbraImg from "../../assets/abra.gif";
 function ErrorPage() {
   return (
-    <div>
-      <h1>404</h1>
-      <h2>Oops, Trubbish ate this page...</h2>
+    <section className="error-container">
+      <h1>Error 404</h1>
+      <img src={AbraImg} alt="Abra image" width={150} height={150} />
+        <h2>Abra used teleport...</h2>
       <NavLink to={"/"}>
-        <button>RETURN HOME</button>
+        <button className="home-btn">Return home</button>
       </NavLink>
-    </div>
+    </section>
   );
 }
 

@@ -1,26 +1,28 @@
 .container-footer {
   display: flex;
   flex: 1;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
   padding: 10px;
-  background-color: #EF5350;
-}
+  background-color: #ef5350;
 
-.repository {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-  img {
-    width: 30px;
-    transition: transform 0.2s ease-in-out;
+  a:hover {
+    transform: scale(1.1);
+    text-decoration: underline;
+    cursor: pointer;
   }
 
-  img:hover {
-    transform: scale(1.1);
+  a, p {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 650px) {
+  .container-footer {
+      justify-content: space-around;
+    a, p {
+      font-size: 16px;
+    }
   }
 }
