@@ -10,10 +10,13 @@ function PokemonCard({ pokemon }) {
           <h2 className="title">{pokemon.name}</h2>
           <div className="image">
             <img
-              src={pokemon.sprites.front_default}
+              src={pokemon.sprites.front_default }
               alt={pokemon.name}
               width={150}
               height={150}
+              onError={(e) => {
+                e.currentTarget.src = "/public/pokeball.png"; 
+              }}
             />
           </div>
           <div className="types">

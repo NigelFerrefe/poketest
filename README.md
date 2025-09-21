@@ -1,12 +1,71 @@
-# React + Vite
+# PokeTest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PokeTest is a web application built with React and Vite that consumes the public Pokémon API [PokéAPI](https://pokeapi.co) to display a list of Pokémon, navigate between pages, toggle between list and grid views, and view details of each Pokémon.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation and Running
 
-## Expanding the ESLint configuration
+1. Clone the repository:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/NigelFerrefe/poketest.git
+cd poketest
+
+
+2. Install dependencies:
+
+```bash
+npm install
+
+3. Run the application
+
+```bash
+npm run dev
+
+---
+
+## Technology Stack
+
+- **React + Vite**
+- **React Router DOM**
+- **Zustand**
+- **Axios**
+- **Cypress**
+- **Pure CSS**
+
+---
+
+## Main Features
+
+1. **Pagination**
+2. **Toggle View**
+3. **Pokémon Detail**
+4. **Global State with Zustand**
+5. **E2E Tests with Cypress**
+
+---
+
+## Brief Explanation of the Implemented Solution
+
+- **Global State with Zustand**:  
+  Keeps track of the current page (`currentPage`) and view type (`currentViewType`) so that when navigating to a Pokémon's detail page and back, the list preserves the exact page and view type.
+
+- **API Consumption with Axios**:  
+  - `getPokemonList` fetches paginated lists of Pokémon.  
+  - `getPokemonDetail` fetches individual Pokémon information.
+
+- **Navigation with React Router DOM**:  
+  - `/` → Paginated Pokémon list.  
+  - `/pokemon/:id` → Selected Pokémon's detail page.
+
+- **Toggle View List / Grid**:  
+  - Button to switch between list and grid views.  
+  - Responsive grid: 4 columns on PC, 3 on tablet, 2 on mobile.
+
+- **Pure CSS Styling**:  
+  - Simple and responsive UI using flex and grid.  
+  - Each Pokémon displays name, image, and type.
+
+- **Cypress Tests**:  
+  - Automated testing of the application's main user flows.
