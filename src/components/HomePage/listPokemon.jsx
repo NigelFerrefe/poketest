@@ -10,7 +10,7 @@ function ListPokemonComponent({ pokemons }) {
     <div className={`list-pokemon-container ${currentViewType}`}>
       {pokemons.map((poke) => (
         <ul key={poke.id} className="list-pokemon-item">
-          <Link to={`/pokemon/${poke.id}`}>
+          <Link to={`/pokemon/${poke.id}`} data-cy={`pokemon-${poke.id}`}>
             <li>{poke.name}</li>
           </Link>
         </ul>

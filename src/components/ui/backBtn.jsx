@@ -12,7 +12,7 @@ function BackButton() {
 
   return (
     <div className="back-btn-container">
-      <button onClick={handleBack} className="back-btn">
+      <button onClick={handleBack} className="back-btn" id="back-btn">
         Back
       </button>
     </div>

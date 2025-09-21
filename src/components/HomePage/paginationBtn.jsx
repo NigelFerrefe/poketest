@@ -6,12 +6,12 @@ function PaginationBtn({ hasPrev, hasNext, onPrev, onNext }) {
     className="pag-btn-container"
     >
       {hasPrev && (
-        <button onClick={onPrev} className="pag-btn">
-          Last
+        <button onClick={onPrev} className="pag-btn" id="previous-btn">
+          Previous
         </button>
       )}
       {hasNext && (
-        <button onClick={onNext} className="pag-btn">
+        <button onClick={onNext} className="pag-btn" id="next-btn">
           Next
         </button>
       )}

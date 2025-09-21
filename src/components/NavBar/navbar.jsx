@@ -13,7 +13,7 @@ function NavBar() {
     <div
     className="navbar-container"
     >
-      <Link to="/" onClick={handleClickHome}>
+      <Link to="/" onClick={handleClickHome} data-cy="navbar">
         <h1>PokeTest</h1>
       </Link>
     </div>
