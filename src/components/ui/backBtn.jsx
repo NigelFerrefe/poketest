@@ -1,12 +1,11 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./customComponents.css";
 
 function BackButton() {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleBack = () => {
-    navigate(location.state?.from || "/");
+    navigate(-1);
   };
 
   return (
