@@ -1,13 +1,12 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import "./customComponents.css";
-import { usePokemonStore } from "../../store/pokemonStore";
-import { useNavigate } from "react-router-dom";
 
 function BackButton() {
-  const { currentPage } = usePokemonStore();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleBack = () => {
-    navigate(`/?page=${currentPage}`);
+    navigate(location.state?.from || "/");
   };
 
   return (

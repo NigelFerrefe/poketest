@@ -1,18 +1,16 @@
-import { Link } from "react-router-dom";
-import { usePokemonStore } from "../../store/pokemonStore";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 
 function NavBar() {
-  const { setCurrentPage } = usePokemonStore();
+  const navigate = useNavigate();
 
-  const handleClickHome = () => {
-    setCurrentPage(1); 
+  const handleClickHome = (e) => {
+    e.preventDefault(); // evitamos que el Link haga un reload
+    navigate("/?page=1&view=list"); // reseteamos página y vista al valor por defecto
   };
 
   return (
-    <div
-    className="navbar-container"
-    >
+    <div className="navbar-container">
       <Link to="/" onClick={handleClickHome} data-cy="navbar">
         <h1>PokeTest</h1>
       </Link>

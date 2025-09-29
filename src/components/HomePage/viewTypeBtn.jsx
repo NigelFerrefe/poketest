@@ -1,8 +1,6 @@
 import { FiList, FiGrid } from "react-icons/fi";
-import { usePokemonStore } from "../../store/pokemonStore";
 import "./buttons.css"
-function ViewTypeButton({ onToggle }) {
-  const { currentViewType } = usePokemonStore();
+function ViewTypeButton({ onToggle, currentViewType }) {
   return (
     <div className="type-btn-container">
       <button onClick={onToggle} className="type-btn" id="type-btn">

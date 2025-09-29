@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { getPokemonList } from "../../api/pokeApi";
-import { usePokemonStore } from "../../store/pokemonStore";
 import ListPokemon from "../../components/HomePage/listPokemon";
 import PaginationBtn from "../../components/HomePage/paginationBtn";
 import ViewTypeButton from "../../components/HomePage/ViewTypeBtn";
@@ -13,17 +12,18 @@ const HomePage = () => {
   const [error, setError] = useState(null);
   const [nextPageExists, setNextPageExists] = useState(false);
   const [prevPageExists, setPrevPageExists] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const { currentPage, setCurrentPage, currentViewType, setCurrentViewType } =
-    usePokemonStore();
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-
-  const initialPage = parseInt(searchParams.get("page")) || currentPage;
+  const currentPage = parseInt(searchParams.get("page")) || 1;
+  const currentViewType = searchParams.get("view") || "list";
 
   const fetchPage = useCallback(
     async (pageNum) => {
-      navigate(`/?page=${pageNum}`, { replace: true });
+      setSearchParams({
+        page: pageNum,
+        view: currentViewType,
+      });
+
       setLoading(true);
       try {
         const data = await getPokemonList({ page: pageNum });
@@ -34,7 +34,6 @@ const HomePage = () => {
         setPokemons(pokemonsWithId);
         setNextPageExists(Boolean(data.next));
         setPrevPageExists(Boolean(data.previous));
-        setCurrentPage(pageNum);
         setError(null);
       } catch (err) {
         setError(err.response?.data?.message || err.message);
@@ -42,31 +41,37 @@ const HomePage = () => {
         setLoading(false);
       }
     },
-    [navigate, setCurrentPage]
+    [currentViewType, setSearchParams]
   );
 
   useEffect(() => {
-    fetchPage(initialPage);
-  }, [fetchPage, initialPage]);
+    fetchPage(currentPage);
+  }, [currentPage, fetchPage]);
 
-  const toggleView = useCallback(() => {
-    setCurrentViewType(currentViewType === "list" ? "grid" : "list");
-  }, [currentViewType, setCurrentViewType]);
+  const toggleView = () => {
+    const newView = currentViewType === "list" ? "grid" : "list";
+    setSearchParams({
+      page: currentPage,
+      view: newView,
+    });
+  };
 
-  const handlePrev = useCallback(
-    () => fetchPage(Math.max(1, currentPage - 1)),
-    [currentPage, fetchPage]
-  );
+  const handlePrev = () => {
+    setSearchParams({
+      page: Math.max(1, currentPage - 1),
+      view: currentViewType,
+    });
+  };
 
-  const handleNext = useCallback(
-    () => fetchPage(currentPage + 1),
-    [currentPage, fetchPage]
-  );
+  const handleNext = () => {
+    setSearchParams({
+      page: currentPage + 1,
+      view: currentViewType,
+    });
+  };
 
   return (
-    <div
-    className="container"
-    >
+    <div className="container">
       {loading ? (
         <div>
           <p>Loading page...</p>
@@ -79,8 +84,8 @@ const HomePage = () => {
         </div>
       ) : (
         <>
-          <ViewTypeButton onToggle={toggleView} />
-          <ListPokemon pokemons={pokemons} />
+          <ViewTypeButton onToggle={toggleView} currentViewType={currentViewType} />
+          <ListPokemon pokemons={pokemons} currentViewType={currentViewType} />
           <PaginationBtn
             hasPrev={prevPageExists}
             hasNext={nextPageExists}
